@@ -21,18 +21,23 @@
    cd /opt/vrack2-service
    ```
 
-2. Создайте структуру директорий:  
+2. Установите зависимости:
+   ```bash
+   npm install
+   ```
+
+3. Создайте структуру директорий:  
    ```bash
    mkdir -p devices storage structure
    ```
 
-3. Поместите свой сервис в `./devices/`:  
+4. Поместите свой сервис в `./devices/`:  
    ```bash
    cd devices
    git clone <ваш-репозиторий-с-сервисом>  # Или вручную скопируйте файлы
    ```
 
-4. Запустите сервис:  
+5. Запустите сервис:  
    ```bash
    cd ..
    npm run start "./devices/ваш_сервис/service.json"
