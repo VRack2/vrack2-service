@@ -1,6 +1,6 @@
 {
   "name": "vrack2-service",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Repository for vrack2-core service run",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "url": "https://github.com/VRack2/vrack2-service/issues"
   },
   "dependencies": {
-    "vrack2-core": "git@gitlab.com:vrack2-group/vrack2-core.git"
+    "vrack2-core": "^1.0.0"
   },
   "homepage": "https://github.com/VRack2/vrack2-service#readme"
 }
