@@ -16,7 +16,7 @@
     "url": "https://github.com/VRack2/vrack2-service/issues"
   },
   "dependencies": {
-    "vrack2-core": "^1.1.0"
+    "vrack2-core": "^1.1.1"
   },
   "homepage": "https://github.com/VRack2/vrack2-service#readme"
 }
