@@ -4,25 +4,25 @@
 */
 const path = require('path');
 
-const { ImportManager, MainProcess } = require("vrack2-core");
-const { isMainThread, workerData } = require("worker_threads");
-
+const { ImportManager, MainProcess, UniversalWorker } = require("vrack2-core");
 
 let MainProcessPath = 'vrack2-core.MainProcess';
 let processFile = 'devices/vrack2/vrack2.json';
 let confFile = 'devices/vrack2/vrack2.conf.json';
 let id = 'vrack2';
 
+
 async function run() {
-    if (isMainThread && process.argv.length === 3) {
+    if (!UniversalWorker.isChild && process.argv.length === 3) {
         processFile = process.argv[process.argv.length - 1];
         const parsed = path.parse(processFile);
         id = parsed.name
-    } else if (!isMainThread) {
-        MainProcessPath = workerData.MainProcess;
-        processFile = workerData.processFile;
-        id = workerData.contaierId;
-        confFile = workerData.confFile;
+    } else if (UniversalWorker.isChild) {
+        const wd = UniversalWorker.getWorkerData()
+        MainProcessPath = wd.MainProcess;
+        processFile = wd.processFile;
+        id = wd.contaierId;
+        confFile = wd.confFile;
     }
     
     const service = await ImportManager.importJSON(processFile);
