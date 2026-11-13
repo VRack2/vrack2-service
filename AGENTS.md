@@ -34,7 +34,7 @@ keys.json           # platform API keys — NEVER commit, NEVER print in logs/ou
 node_modules/vrack2-core/lib/*.d.ts   # GROUND TRUTH of the core API on any mismatch with docs
 ```
 
-`devices/ services/ structure/ storage/ journals/ keys.json` are **gitignored** — live work, not repo-tracked code; git history explains nothing here.
+`devices/ services/ structure/ storage/ journals/ keys.json` are **gitignored** — live work, not repo-tracked code; this root repo's history explains nothing here. Each vendor is **its own git repo**: run `git` commands **inside** `devices/<vendor>` (its tests, cards, src and build are versioned there, not here).
 
 ## The API (live platform)
 
@@ -52,7 +52,7 @@ No REST: the API is **commands registered by devices into `Master`**; the set de
 |---|---|
 | Device skeleton + full API | [`ai-doc-en/03-device.md`](./ai-doc-en/03-device.md) |
 | Exact signatures on any mismatch | `node_modules/vrack2-core/lib/*.d.ts` (ground truth) |
-| Small real device to copy | `devices/test/SineWave.js`, `devices/my-vendor/Counter.js` |
+| Small real device to copy | `devices/vrack2-test/SineWave.js`, `devices/my-vendor/Counter.js` |
 | Vendor shape | directory + `list.json` (array of class names, no `.js`); own `package.json` per vendor |
 | Service + meta syntax | [`ai-doc-en/02-service.md`](./ai-doc-en/02-service.md); examples in `services/*.json` |
 | Prose docs | `devices/vrack2/docs/FirstService.md`, `ServiceFile.md`, `Devices.md`, `Service.md` |
@@ -69,4 +69,6 @@ Steps: `devices/<vendor>/<Device>.js` + entry in vendor `list.json` (no entry = 
 | **Device API**: data flow, ports, lifecycle, shares, metrics, actions, errors | [`03-device`](./ai-doc-en/03-device.md) |
 | Platform: ServiceManager, workers, submaster, WS, access levels | [`04-platform`](./ai-doc-en/04-platform.md) |
 | Naming rules, task→action table, common mistakes | [`05-cheatsheet`](./ai-doc-en/05-cheatsheet.md) |
+| **Testing**: binary device/graph tests — owned and run by the vendor (`npm test` inside `devices/<vendor>`; one test: `node run/run-test.js <file>` from the repo root), helper devices (`vrack2-test`), what is testable vs service-level observation | [`devices/vrack2-test/README.md`](./devices/vrack2-test/README.md) |
+| Device **cards** (AI-facing verification briefs): English only, ~30–40 lines, every line an assertion or command→expected | format in the testing README |
 | Source of truth | `devices/vrack2/docs/*.md`; core API — `node_modules/vrack2-core/lib/*.d.ts` |
